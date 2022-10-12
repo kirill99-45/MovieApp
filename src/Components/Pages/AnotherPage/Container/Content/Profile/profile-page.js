@@ -45,5 +45,5 @@ export const ProfilePage = ({ activeUser, setLayoutState }) => {
          />
        </div>
     )
-  } window.location.pathname = '/react-first-app/'
+  } window.location.pathname = '/MovieApp/'
 }
