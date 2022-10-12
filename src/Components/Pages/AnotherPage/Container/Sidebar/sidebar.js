@@ -4,11 +4,11 @@ import { useSelector } from 'react-redux';
 import {Link} from 'react-router-dom';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFilm, faBookOpenReader, faUsers, faServer, faSun, faMoon, faBars } from '@fortawesome/free-solid-svg-icons';
-import SidebarOptions from './sidebar-options.js';
-import SidebarUser from './sidebar-user.js';
+import { SidebarOptions } from './sidebar-options.js';
+import { SidebarUser } from './sidebar-user.js';
 import './sidebar.css';
 
-const Sidebar = ({ activeUser }) => {
+export const Sidebar = ({ activeUser }) => {
 
   const options = useSelector((state) => {
     return state.sidebarReducer
@@ -78,5 +78,3 @@ const Sidebar = ({ activeUser }) => {
     </div>
   )
 }
-
-export default Sidebar;

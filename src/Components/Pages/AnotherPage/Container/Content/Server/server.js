@@ -4,7 +4,7 @@ import './server.css';
 import { Search } from 'C:/Users/User/github/movies/src/Components/Search/search.js';
 import { Page } from './page.js';
 
-const Server = () => {
+export const Server = () => {
 
   const [dataState, setDataState] = useState({
     loading : true,
@@ -54,5 +54,3 @@ const Server = () => {
     </div>
   )
 }
-
-export default Server;

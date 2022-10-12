@@ -2,7 +2,7 @@ import {Link} from 'react-router-dom';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFilm, faBookOpenReader, faUsers, faServer, faSun, faMoon, faBars } from '@fortawesome/free-solid-svg-icons';
 
-const SidebarOptions = ({ options, setSidebarState, activeUser }) => {
+export const SidebarOptions = ({ options, setSidebarState, activeUser }) => {
 
   return options.map(({ path, title, icon }) => {
     if (title !== 'Моя страница') {
@@ -22,5 +22,3 @@ const SidebarOptions = ({ options, setSidebarState, activeUser }) => {
     }
   })
 }
-
-export default SidebarOptions;

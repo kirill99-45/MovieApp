@@ -13,7 +13,7 @@ export const Pages = (props) => {
   return (
     <>
     {
-      window.location.pathname === 'MovieApp' ?
+      window.location.pathname === 'MovieApp/' ?
       <MainPage uppState={uppState} activeUser={props.activeUser} /> :
       <AnotherPage setLayoutState={props.setLayoutState} activeUser={props.activeUser}  />
     }
