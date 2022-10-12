@@ -1,0 +1,136 @@
+.users-page__wrapper {
+  width: 100%;
+  min-height: 400px;
+  margin-top: 10px;
+  margin-left: 10px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 150px;
+  row-gap: 10px;
+  padding-right: 10px;
+}
+
+.cards__container {
+  width: 100%;
+  min-height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: 25px;
+  justify-content: space-between;
+}
+
+.TestPage__wrapper .d3 {
+  position: relative;
+  align-self: center;
+  width: 100%;
+}
+
+.negative-search {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.users__filter-wrapper {
+  display: flex;
+  column-gap: 10px;
+  flex-wrap: wrap;
+  row-gap: 5px;
+}
+
+.users__radio-wrapper {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  width: 30%;
+}
+
+input[name='users'] {
+  display: none;
+}
+
+.users__filter-label .users__radio-icon {
+  border-radius: 3px;
+  padding: 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #2f3742;
+  color: #2f3742;
+}
+
+input[name='users']:not(:checked) + .users__filter-label {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  column-gap: 5px;
+  font-weight: 600;
+  transition: 0.2s;
+}
+
+input[name='users']:not(:checked):hover + .users__filter-label .users__radio-icon {
+  background: #14e08b;
+  transition: 0.2s;
+}
+
+input[name='users']:not(:checked):active + .users__filter-label {
+  transform: scale(95%);
+}
+
+input[name='users']:checked  + .users__filter-label {
+  display: flex;
+  column-gap: 5px;
+  align-items: center;
+  font-weight: 600;
+  color: #232931;
+}
+
+input[name='users']:checked  + .users__filter-label .users__radio-icon {
+  border-radius: 3px;
+  padding: 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #14e08b;
+  color: white;
+}
+
+@media (max-width: 607px) {
+  .users__radio-wrapper {
+    width: 40%;
+  }
+}
+
+@media (max-width: 515px) {
+  .users__radio-wrapper {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 469px) {
+  .users__radio-wrapper {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 417px) {
+  .users__radio-wrapper {
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 395px) {
+  .users__radio-wrapper {
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 379px) {
+  .users__radio-wrapper {
+    flex-wrap: wrap;
+    white-space: nowrap;
+  }
+}

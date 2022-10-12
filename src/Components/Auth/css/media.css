@@ -1,0 +1,41 @@
+@media (min-width: 1024px) {
+  .authorization__container h1 {
+    margin: 0px auto;
+  }
+  .authorization__login, .authorization__password {
+    padding: 15px;
+  }
+  .authorization__container button {
+    margin: 0px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .authorization__wrapper {
+    width: 60%;
+    margin: 5px;
+  }
+  .authorization__container h1 {
+    margin: 0px auto;
+  }
+  .authorization__login, .authorization__password {
+    padding: 15px;
+  }
+  .authorization__container button {
+    margin: 0px;
+  }
+}
+
+@media (max-width: 768px) {
+  .authorization__wrapper {
+    width: 80%;
+    margin: 5px;
+  }
+}
+
+@media (max-width: 480px) {
+  .authorization__wrapper {
+    width: 100%;
+    margin: 5px;
+  }
+}

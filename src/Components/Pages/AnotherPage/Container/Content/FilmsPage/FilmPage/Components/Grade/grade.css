@@ -1,0 +1,56 @@
+.btn__user-grade {
+  position: relative;
+}
+
+.user-grade-hidden {
+  display: none;
+}
+
+.user-grade-open {
+  position: absolute;
+  bottom: -60px;
+  left: 0;
+  width: 300%;
+  height: 50px;
+  border-radius: 20px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 10px;
+  background: #232931;
+  color: white;
+}
+
+.user-grade-open::after {
+  content: '';
+  background: white;
+  width: 10px;
+  height: 10px;
+  position: absolute;
+  top: -5px;
+  left: 80px;
+  transform: rotate(45deg);
+}
+
+.user-grade-open img {
+  width: 35px;
+  height: 35px;
+  opacity: 0.4;
+}
+
+.user-grade-open span {
+  display: block;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  opacity: 0.4;
+  font-weight: bold;
+}
+
+.user-grade-open span:hover {
+  opacity: 1;
+  transform: scale(110%);
+}

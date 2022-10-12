@@ -1,0 +1,286 @@
+/* Блок статьи */
+
+.post-page__article {
+  width: 80%;
+}
+
+.post-page__article-title {
+  font-size: 28px;
+  margin: 10px auto;
+  text-align: center;
+  font-weight: 900;
+}
+
+.post-page__article-text {
+  font-size: 18px;
+  text-align: justify;
+}
+
+/* Блок фотографии */
+
+
+.post-page__photos {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px auto;
+}
+
+.post-page__photos-container {
+  display: flex;
+  flex-direction: row;
+  width: 90%;
+  justify-content: center;
+  column-gap: 20px;
+}
+
+.post-page__photos-photo {
+  width: 100%;
+  display: flex;
+}
+
+.post-page__photos-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.post-page__photos-title {
+  width: 90%;
+  opacity: 0.8;
+  margin-top: 10px;
+}
+
+/* Блок карточки фильма */
+
+.post-page__film {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0px 0px 20px 3px #00000040;
+  border-radius: 2px;
+  margin-top: 20px;
+  color: #232931;
+  padding: 20px;
+}
+
+.post-page__film-about {
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+  padding-right: 10px;
+}
+
+.post-page__film-main {
+  display: flex;
+  row-gap: 10px;
+}
+
+.post-page__film-main h3 {
+  margin: 0;
+  font-size: 34px;
+  padding-right: 10px;
+}
+
+.post-page__film-link {
+  text-decoration: none;
+  color: #551a8b;
+  transition: 0.2s;
+}
+
+.post-page__film-link:hover {
+  text-decoration: underline;
+  transition: 0.2s;
+}
+
+.post-page__film-link:active {
+  text-decoration: underline;
+  scale: 98%;
+  transition: 0.2s;
+}
+
+.post-page__film-link:focus {
+  text-decoration: underline;
+  transition: 0.2s;
+  border: none;
+  outline: none;
+}
+
+.post-page__film-data {
+  opacity: 0.8;
+  font-size: 14px;
+  align-self: start;
+}
+
+.post-page__film-roles {
+  text-wrap: wrap;
+  padding-right: 5px;
+}
+
+.post-page__film-info {
+  display: flex;
+  column-gap: 10px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.post-page__film-participants {
+  display: flex;
+  flex-direction: column;
+  row-gap: 5px;
+}
+
+.post-page__film-footer {
+  margin-top: 15px;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  width: 100%;
+}
+
+.post-page__film-button {
+  background: rgb(20 224 139);
+  padding: 15px 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 10px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: 0.3s;
+  color: #232931;
+  font-weight: bold;
+}
+
+.post-page__film-button:hover {
+  background: #13b370;
+  transition: 0.2s;
+}
+
+.post-page__film-button:active {
+  scale: 98%;
+  transition: 0.2s;
+}
+
+.post-page__film-button:focus {
+  background: #13b370;
+  transition: 0.3s;
+  text-decoration: underline;
+  border: none;
+  outline: none;
+}
+
+.post-page__film-poster {
+  position: relative;
+  z-index: 2;
+  width: 20%;
+}
+
+.post-page__film-poster::after {
+  content: attr(rating);
+  width: 90px;
+  height: 30px;
+  position: absolute;
+  top: 5px;
+  left: -10px;
+  background: rgb(20 224 139);
+  border-radius: 6px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 22px;
+  font-weight: bold;
+  z-index: 3;
+}
+
+.post-page__film-poster img {
+  width: 100%;
+  height: 100%;
+}
+
+.post-page__film-poster-icon {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  padding: 10px;
+  background: #232931;
+  color: white;
+  border-radius: 12px;
+  transition: 0.3s;
+}
+
+.post-page__film-poster:hover .post-page__film-poster-icon {
+  transform: scale(110%);
+  transition: 0.3s;
+}
+
+@media (max-width: 970px) {
+  .post-page__film-poster {
+    width: 30%;
+  }
+}
+
+@media (max-width: 835px) {
+  .post-page__film-poster {
+    width: 40%;
+  }
+}
+
+@media (max-width: 715px) {
+  .post-page__film-poster {
+    width: 50%;
+  }
+}
+
+@media (max-width: 685px) {
+  .post-page__film-main h3 {
+    font-size: 26px;
+  }
+}
+
+@media (max-width: 663px) {
+  .post-page__film-main {
+    flex-direction: column;
+  }
+  .post-page__film-data {
+    align-self: center;
+  }
+  .post-page__film-info {
+    margin-top: 10px;
+  }
+  .post-page__film-main h3 {
+    text-align: center;
+  }
+  .post-page__film-poster {
+    width: 40%;
+    align-self: center;
+  }
+  .post-page__film-footer {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 500px) {
+  .post-page__film-poster {
+    width: 50%;
+  }
+  .post-page__footer {
+    padding: 10px;
+  }
+  /* .post-page__film {
+    width: 95%;
+  } */
+}
+
+@media (max-width: 340px) {
+  .post-page__film-data {
+    font-size: 16px;
+  }
+}

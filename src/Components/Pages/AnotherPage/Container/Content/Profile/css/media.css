@@ -1,0 +1,34 @@
+@media (max-width: 768px) {
+  .profile__count-of {
+    width: 30%;
+  }
+  .profile__additional-item {
+    font-size: 14px;
+  }
+  .profile__additional-item span:nth-child(1) {
+    width: 40%;
+  }
+  .additionalInfo-item__languages {
+    width: 250px;
+  }
+  .profile__additional-item span:nth-child(2) {
+    width: 250px;
+  }
+  .profile__wrapper {
+    column-gap: 15px;
+  }
+  .profile__right-side {
+    row-gap: 15px;
+  }
+}
+
+@media (max-width: 320px) {
+  .profile__additional-info button {
+    padding: 0px;
+    display: block;
+    text-align: center;
+  }
+  .profile__count-of {
+    font-size: 14px;
+  }
+}

@@ -1,0 +1,115 @@
+.btn-subscribe {
+ border: none;
+ outline: none;
+ background: transparent;
+ background-color: #232931;
+ padding: 20px 30px;
+ color: white;
+ text-transform: uppercase;
+ border-radius: 3px;
+ cursor: pointer;
+ width: 100%;
+ margin-top: 10px;
+ transition: 0.2s linear;
+}
+
+.btn-subscribe:hover {
+  transition: 0.2s linear;
+  transform: scale(105%);
+}
+
+.btn-subscribed {
+  border: none;
+  outline: none;
+  background: transparent;
+  background-color: #4ECCA3;
+  padding: 20px 30px;
+  color: white;
+  text-transform: uppercase;
+  border-radius: 3px;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 10px;
+  transition: 0.2s linear;
+}
+
+.btn-subscribed:hover {
+  transition: 0.2s linear;
+  box-shadow: 0px 0px 11px 2px #ff0000;
+  background: #232931;
+}
+
+.filter {
+  margin-top: 5px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  position: relative;
+}
+
+.user-page-filter {
+  width: 30%;
+  height: 100%;
+  border: none;
+  color: #4ECCA3;
+  font-size: 18px;
+  text-transform: uppercase;
+  background: #000000de;
+  cursor: pointer;
+}
+
+.user-page-filter__options-hidden {
+  position: absolute;
+  bottom: -130px;
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 6px;
+  overflow: hidden;
+  visibility: hidden;
+}
+
+.user-page-filter__options {
+  position: absolute;
+  bottom: -130px;
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 6px;
+  overflow: hidden;
+  visibility: visible;
+}
+
+.user-page-filter__options button {
+  border: none;
+  cursor: pointer;
+  height: 40px;
+  width: 100%;
+  text-align: center;
+  background: #14e08b;
+  border-bottom: 1px solid;
+}
+
+.user-page-filter__options button:hover {
+  border-bottom: 1px solid red;
+}
+
+@media (max-width: 480px) {
+  .profile__wrapper {
+    flex-direction: column;
+    width: 100%;
+    row-gap: 10px;
+  }
+  .profile__left-side {
+    width: 100%;
+  }
+  .profile__right-side {
+    width: 100%;
+  }
+}

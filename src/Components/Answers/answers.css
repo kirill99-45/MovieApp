@@ -1,0 +1,77 @@
+.comment-answer__wrapper {
+  display: flex;
+  column-gap: 10px;
+  position: relative;
+  width: 100%;
+  margin: 20px auto;
+  padding-right: 15px;
+  justify-content: end;
+}
+
+.comment-answer__wrapper:hover .post-page__comment-rating {
+  display: flex;
+  flex-direction: column;
+  width: 20px;
+  position: absolute;
+  align-items: center;
+  row-gap: 6px;
+  top: 0;
+  right: 0;
+}
+
+.post-page__comment-answer {
+  display: none;
+}
+
+.post-page__comment-answer-active {
+  width: 100%;
+  display: flex;
+  column-gap: 10px;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+.post-page__more-answers {
+  background: none;
+  border: none;
+  height: 30px;
+  cursor: pointer;
+}
+
+.post-page__more-answers:hover {
+  text-decoration: underline;
+}
+
+.post-page__more-answers:active {
+  scale: 98%;
+}
+
+.post-page__more-answers:focus {
+  text-decoration: underline;
+  border: none;
+  outline: none;
+}
+
+.post-page__hide-answers {
+  background: none;
+  border: none;
+  height: 30px;
+  cursor: pointer;
+}
+
+.post-page__hide-answers:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 430px) {
+  .post-page__comment-answer-active {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .post-page__comment-consumer {
+    justify-content: center;
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+}

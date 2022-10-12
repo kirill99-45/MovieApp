@@ -1,0 +1,31 @@
+@media (max-width: 620px) {
+  .post__wrapper {
+    width: 47%;
+  }
+}
+
+@media (max-width: 500px) {
+  .main-posts__wrapper {
+    flex-direction: column;
+    row-gap: 10px;
+    height: 600px;
+  }
+  .main-post__wrapper {
+    width: 100%;
+  }
+}
+
+@media (max-width: 450px) {
+  .post__wrapper {
+    width: 100%;
+  }
+}
+
+@media (max-width: 415px) {
+  .main-post__info-container h2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}

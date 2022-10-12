@@ -1,0 +1,125 @@
+.main-sidebar {
+  width: 22%;
+  height: 500px;
+  margin: 10px auto;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+  border-radius: 6px;
+  box-shadow: 0px 0px 4px 1px #989292;
+  background: transparent;
+  z-index: 1;
+  backdrop-filter: blur(8px);
+  transition: 2s;
+}
+
+.main-container {
+  width: 100%;
+  min-height: 70vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  column-gap: 10px;
+  border: 1px solid #dce1e6;
+  border-radius: 6px;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  background-image: URL('https://img.freepik.com/free-vector/black-white-gradient-abstract-background-free-vector_552255-188.jpg?w=740');
+  background-position: center;
+  background-size: cover;
+  position: relative;
+  overflow: hidden;
+}
+
+.main-container::after {
+  content: '';
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: #232931;
+  top: -90px;
+  box-shadow: 0px 0px 7px 4px #232931;
+  left: 350px;
+}
+
+
+.main-container::before {
+  content: '';
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: #fbfbfb;
+  box-shadow: 0px 0px 7px 4px #fbfbfb;
+  bottom: -90px;
+  right: 350px;
+}
+
+.main-container::before {
+  animation: before 6s infinite linear;
+}
+
+@keyframes before {
+  from {
+    background: #fbfbfb;
+  }
+  50% {
+    background: #232931;
+    box-shadow: 0px 0px 7px 4px #232931;
+    animation-timing-function: ease-in;
+    bottom: -40px;
+  }
+  70% {
+    background: #232931;
+    box-shadow: 0px 0px 7px 4px #232931;
+    animation-timing-function: ease-in;
+    bottom: -60px;
+  }
+  to {
+    background: #4ECCA3;
+    box-shadow: 0px 0px 7px 4px #4ECCA3;
+    bottom: -90px;
+  }
+}
+
+.main-container::after {
+  animation: after 6s infinite linear;
+}
+
+@keyframes after {
+  from {
+    background: #232931;
+  }
+  50% {
+    background: #fbfbfb;
+    box-shadow: 0px 0px 7px 4px #fbfbfb;
+    animation-timing-function: ease-in;
+    top: -40px;
+  }
+  70% {
+    background: #fbfbfb;
+    box-shadow: 0px 0px 7px 4px #fbfbfb;
+    animation-timing-function: ease-in;
+    top: -60px;
+  }
+  to {
+    background: #4ECCA3;
+    box-shadow: 0px 0px 7px 4px #4ECCA3;
+    top: -90px;
+  }
+}
+
+@media (max-width: 768px) {
+  .main-sidebar {
+    width: 40%;
+  }
+}
+
+@media (max-width: 320px) {
+  .main-sidebar {
+    width: 60%;
+  }
+}

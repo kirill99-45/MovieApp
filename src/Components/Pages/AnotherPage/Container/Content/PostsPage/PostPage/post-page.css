@@ -1,0 +1,116 @@
+.post-page {
+  color: #232931;
+  display: flex;
+  row-gap: 10px;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10px;
+  position: relative;
+}
+
+/* Кнопка вверх */
+
+.page-to-up {
+  position: fixed;
+  bottom: 20px;
+  left: 60px;
+  padding: 10px;
+  border-radius: 6px;
+  box-shadow: 0px 0px 20px 3px #00000040;
+  background: white;
+  z-index: 10;
+  cursor: pointer;
+  border: none;
+  transition: 0.3s;
+  opacity: 0.4;
+}
+
+.page-to-up:hover {
+  scale: 120%;
+  transition: 0.2s;
+  opacity: 1;
+}
+
+.page-to-up:active {
+  scale: 95%;
+  transition: 0.2s;
+}
+
+/* Шапка страницы */
+
+.post-page__header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.post-page__category-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  column-gap: 10px;
+  margin-top: 20px;
+  padding: 10px 20px;
+  border-radius: 12px;
+  background: #232931;
+}
+
+.post-page__category-icon {
+  transform: rotate(270deg);
+  color: white;
+}
+
+.post-page__category-title {
+  font-weight: bold;
+  color: white;
+}
+
+.post-page h1 {
+  text-align: center;
+  padding: 0px 10px;
+}
+
+/* Основная часть */
+
+.post-page__main {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+}
+
+.post-page__main-photo {
+  width: 100%;
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.post-page__main-photo img {
+  width: 90%;
+}
+
+.post-page__summary {
+  width: 80%;
+  text-align: justify;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+/* Футер страницы */
+
+.post-page__footer {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+  box-shadow: 0px 0px 20px 3px #00000040;
+  padding: 10px 40px;
+}
+
+@media (max-width: 500px) {
+  /* .post-page__footer {
+    width: 95%;
+  } */
+}

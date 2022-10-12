@@ -1,0 +1,356 @@
+.big-photo-hidden {
+  display: none;
+}
+.big-photo-visible {
+  display: block;
+  overflow: hidden;
+}
+
+.overlay {
+  position: fixed;
+  right: 0px;
+  bottom: 0px;
+  top: 0px;
+  left: 0px;
+  background: #1c1a1ae3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  overflow: hidden;
+}
+
+.close-BigPhoto {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100px;
+  height: 100px;
+  background-size: cover;
+  cursor: pointer;
+  display: flex;
+  justify-content: end;
+  align-items: start;
+}
+
+.close-BigPhoto img {
+  width: 25px;
+  height: 25px;
+}
+
+.BigPhoto__container {
+  width: 900px;
+  height: 95vh;
+  background: #292a2b;
+  border-radius: 7px;
+  overflow: hidden;
+  display: flex;
+}
+
+.photo__container {
+  width: 60%;
+  height: 95%;
+  margin: 20px;
+  margin-top: 0;
+  position: relative;
+}
+
+.BigPhoto__prev-photo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 40px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0.3;
+  transition: 0.4s;
+  cursor: pointer;
+}
+
+.big-Photo__prev-arrow {
+  width: 40px;
+  height: 40px;
+  background-size: cover;
+  background-position: right;
+  background-image: URL('https://static.tildacdn.com/tild3939-6336-4138-a136-363439623766/left.png');
+}
+
+.big-Photo__next-arrow {
+  width: 40px;
+  height: 40px;
+  background-image: URL('https://static.tildacdn.com/tild3939-6336-4138-a136-363439623766/left.png');
+  background-size: cover;
+  background-position: right;
+  transform: rotateY(180deg);
+  padding:
+}
+
+.BigPhoto__next-photo {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 40px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0.3;
+  transition: 0.4s;
+  cursor: pointer;
+}
+
+.BigPhoto__next-photo:hover, .BigPhoto__prev-photo:hover {
+  opacity: 1;
+  transition: 0.4s;
+}
+
+.photo__container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.functions {
+  width: 100%;
+  height: 15px;
+  margin-top: 3px;
+  box-shadow: 0px 0px 5px black;
+}
+
+.BigPhoto__comments {
+  width: 40%;
+  height: 100%;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.photo__info-container {
+  width: 90%;
+  height: 85px;
+  display: flex;
+  margin: 0px auto;
+  margin-top: 10px;
+  border-bottom: 1px solid #dce1e6;
+  position: relative;
+}
+
+.photo__likes {
+  width: 90%;
+  height: 80px;
+  margin: 10px auto;
+  border-bottom: 1px solid #dce1e6;;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  column-gap: 10px;
+}
+
+
+.photo__comments-content {
+  width: 100%;
+  height: 400px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.photo__without-comments {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.5;
+  font-weight: bold;
+}
+
+.photo__add-comment__anonim {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  box-shadow: 0px 0px 4px 1px #989292;
+  border-radius: 6px;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  color: blue;
+  cursor: pointer;
+}
+
+.photo__without-comments::after {
+  content: '';
+  width: 30px;
+  height: 30px;
+  background-image: URL('https://cdn-icons-png.flaticon.com/512/1380/1380338.png');
+  background-size: cover;
+  background-position: center;
+}
+
+.author-avatar {
+  width: 80px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.author-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.photo-info {
+  display: flex;
+  flex-direction: column;
+  margin-left: 15px;
+  align-self: center;
+}
+
+.photo-info span:nth-child(1) {
+  font-weight: bold;
+  font-size: 18px;
+  color: #00204a;
+}
+
+.photo-info span:nth-child(2) {
+  font-size: 14px;
+  color: #00000078;
+}
+
+.likes-container {
+  display: flex;
+  width: 90px;
+  height: 40px;
+  align-items: center;
+  justify-content: center;
+  column-gap: 10px;
+}
+
+.likes-container img {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+}
+
+.likes-container span {
+  font-size: 18px;
+  font-weight: bold;
+  color: #00204a;
+}
+
+.photo__comment {
+  width: 90%;
+  min-height: 70px;
+  display: flex;
+  align-items: center;
+  column-gap: 10px;
+  border-bottom: 1px solid #dce1e6;;
+  margin: 10px auto;
+}
+
+.photo__comment img {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 50%;
+  object-position: top;
+}
+
+.addComment {
+  width: 90%;
+  min-height: 70px;
+  border-top: 1px solid #dce1e6;;
+  display: flex;
+  column-gap: 10px;
+  margin: 10px auto;
+  align-items: center;
+  position: relative;
+}
+
+.addComment img {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.comment-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.comment-info a {
+  text-decoration: none;
+}
+
+.comment-info span:nth-child(1) {
+  font-size: 14px;
+  font-weight: bold;
+  color: #00204a;
+}
+
+.comment-info a:hover {
+  text-decoration: underline;
+}
+
+.comment-info span:nth-child(2) {
+  font-size: 12px;
+}
+
+.comment-info span:nth-child(3) {
+  margin-top: 10px;
+  font-size: 10px;
+  color: #00000078;
+}
+
+.photo__add-comment {
+  resize: none;
+  height: 50px;
+  width: 280px;
+  border: none;
+  padding: 10px;
+  padding-right: 85px;
+}
+.photo__add-comment:focus {
+  outline: none;
+}
+
+.big-photo__btn {
+  border: solid;
+  width: 60%;
+  border-radius: 20px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30px;
+  box-shadow: 0px 0px 4px 1px #989292;
+  background: white;
+  border-radius: 6px;
+  border: none;
+  color: #52616B;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.addComment .big-photo__btn {
+  position: absolute;
+  width: 30%;
+  right: 0px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.big-photo__btn:hover {
+  background: #e5e4d9;
+  transition: 0.3s;
+}
