@@ -1,49 +1,30 @@
 import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { BigPhoto } from 'C:/Users/User/github/movies/src/Components/Big-photo/big-photo.js';
 import { RightSide } from './Components/right-side';
 import { LeftSide } from './Components/left-side.js';
 import './css/profile-page.css';
 import './css/media.css';
 
-export const ProfilePage = ({ activeUser, setLayoutState }) => {
+export const ProfilePage = () => {
 
-  const [bigPhotoState, setBigPhotoState] = useState({ className : 'big-photo-hidden', data : null })
+  const photos = useSelector(state => {
+    return state.activeUserReducer.user.photos
+  })
 
-  const [color, setColor] = useState('#232931')
+  const isBigPhoto = useSelector(state => {
+    return state.bigPhotoReducer.isOpen
+  })
 
   useEffect(() => {
     window.scrollTo(0, 0)
-
-    const getColor = () => setColor('')
-
-    window.addEventListener('load', getColor)
-
-    return () => {
-      window.removeEventListener('load', getColor)
-    }
   }, [])
 
-
-  if (activeUser.id) {
-    return (
-       <div className='profile__wrapper'>
-         <BigPhoto
-           setBigPhotoState={setBigPhotoState}
-           bigPhotoState={bigPhotoState}
-           setLayoutState={setLayoutState}
-           activeUser={activeUser}
-           photos={activeUser.photos}
-         />
-         <LeftSide
-          activeUser={activeUser}
-          color={color}
-         />
-         <RightSide
-           activeUser={activeUser}
-           setBigPhotoState={setBigPhotoState}
-           color={color}
-         />
-       </div>
-    )
-  } window.location.pathname = '/MovieApp/'
+  return (
+     <div className='profile__wrapper'>
+       { isBigPhoto && <BigPhoto photos={photos}/> }
+       <LeftSide />
+       <RightSide />
+     </div>
+  )
 }

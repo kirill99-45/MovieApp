@@ -1,11 +1,16 @@
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInstagram, faVk, faTwitter } from '@fortawesome/free-brands-svg-icons';
 import { faHome } from '@fortawesome/free-solid-svg-icons';
 import './css/user-card.css';
 import './css/media.css';
 
-export const UserCard = ({ user, activeUser, card, color }) => {
+export const UserCard = ({ user, card, color }) => {
+
+  const activeUser = useSelector(state => {
+    return state.activeUserReducer.user
+  })
 
   /*------ Определяем возраст пользователя -----*/
 
@@ -43,37 +48,48 @@ export const UserCard = ({ user, activeUser, card, color }) => {
     } else return 'лет'
   }
 
-  /*------ Проверяем, является ли карточка - карточкой активного пользователя ---*/
+  const currentPath = window.location.pathname
 
-  const checkActiveUser = () => {
-    return activeUser ? 'profile' : user.id
+  const getPathName = (user) => {
+    if (!activeUser.id || activeUser.id !== user.id) {
+      return [...currentPath.split('/').map((item, index) => index === 3 ? user.id : item), user.id].join('/')
+    }
+    else {
+      return currentPath.split('/').map((item, index) => {
+        if (item === 'users') {
+          return 'profile'
+        } else if (index < 2) {
+          return item
+        }
+      }).join('/')
+    }
   }
 
   return (
     <div className='card'>
       <div className='card-wrapper'>
-        <Link to={{ pathname : checkActiveUser() }} className='card-top-part'>
+        <Link to={{ pathname : getPathName(user) }} className='card-top-part'>
           <div className='card-top-part__img-container'>
-           <img src={user.mainPhoto} alt='Фотография' style={{ backgroundColor : color }}/>
+           <img src={user.mainPhoto} alt='Фотография'/>
           </div>
-          </Link>
-          <div className='card-bottom-part'>
-            <span>{user.firstName} {user.lastName}, {howOld(years, months, date)}</span>
-            <div className='social-media'>
-              <a href={user.media.instagram} target='_blank' className='media__wrapper'>
-                <FontAwesomeIcon icon={faInstagram} title='Перейти' className='media'/>
-              </a>
-              <a href={user.media.vk} target='_blank' className='media__wrapper'>
-                <FontAwesomeIcon icon={faVk} title='Перейти' className='media'/>
-              </a>
-              <a href={user.media.twitter} target='_blank' className='media__wrapper'>
-                <FontAwesomeIcon icon={faTwitter} title='Перейти' className='media'/>
-              </a>
-              <Link to={{ pathname: checkActiveUser() }} className='media__wrapper'>
-                <FontAwesomeIcon icon={faHome} title='Перейти на страницу' className='media'/>
-              </Link>
-            </div>
+        </Link>
+        <div className='card-bottom-part'>
+          <span>{user.firstName} {user.lastName}, {howOld(years, months, date)}</span>
+          <div className='social-media'>
+            <a href={user.media.instagram} target='_blank' className='media__wrapper'>
+              <FontAwesomeIcon icon={faInstagram} title='Перейти' className='media'/>
+            </a>
+            <a href={user.media.vk} target='_blank' className='media__wrapper'>
+              <FontAwesomeIcon icon={faVk} title='Перейти' className='media'/>
+            </a>
+            <a href={user.media.twitter} target='_blank' className='media__wrapper'>
+              <FontAwesomeIcon icon={faTwitter} title='Перейти' className='media'/>
+            </a>
+            <Link to={{ pathname : getPathName(user) }} className='media__wrapper'>
+              <FontAwesomeIcon icon={faHome} title='Перейти на страницу' className='media'/>
+            </Link>
           </div>
+        </div>
        </div>
     </div>
   )

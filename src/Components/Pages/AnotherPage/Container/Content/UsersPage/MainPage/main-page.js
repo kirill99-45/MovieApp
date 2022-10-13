@@ -1,22 +1,22 @@
 import { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { UserCard } from './UserCard/user-card.js';
 import { Search } from 'C:/Users/User/github/movies/src/Components/Search/search.js';
 import { Filter } from './filter.js';
 import './main-page.css';
 
-export const MainPage = ({ users, activeUser }) => {
+export const MainPage = () => {
 
-  const [color, setColor] = useState('#232931')
+  const users = useSelector(state => {
+    return state.usersReducer
+  })
+
+  const activeUser = useSelector(state => {
+    return state.activeUserReducer.user
+  })
 
   useEffect(() => {
     window.scrollTo(0, 0)
-    const getColor = () => setColor('')
-
-    window.addEventListener('load', getColor)
-
-    return () => {
-      window.removeEventListener('load', getColor)
-    }
   }, [])
 
   const [usersOnPage, setUsersOnPage] = useState(users)
@@ -34,7 +34,7 @@ export const MainPage = ({ users, activeUser }) => {
          const result = []
           users.forEach(user => {
             user.subscribs.filter(item => {
-              if (item.id === activeUser) {
+              if (item.id === activeUser.id) {
                 result.push(user)
               }
             })
@@ -46,7 +46,7 @@ export const MainPage = ({ users, activeUser }) => {
         const result = []
          users.forEach(user => {
            user.subscribers.filter(item => {
-             if (item.id === activeUser) {
+             if (item.id === activeUser.id) {
                result.push(user)
              }
            })
@@ -57,12 +57,12 @@ export const MainPage = ({ users, activeUser }) => {
     }
   }
 
-  const Users = ({ users, activeUser, color, filterState }) => {
-    if (usersFilter(users, filterState, activeUser).length > 0) { // Проверка на то, есть ли кто-то в массиве
-      return usersFilter(users, filterState, activeUser) // Формируем массив в зависимости от включенной опции радио кнопки
-        .filter(user => user.firstName.includes(searchState)) // Фильтруем массив в зависимости от значения поисковой строки
-        .map(user => <UserCard user={user} activeUser={ user.id === activeUser ? activeUser : null } color={color}/>) // Преобразуем массив в элементы HTML разметки
-    } return <h3>Сначала нужно подписаться:)</h3> // На случай, если никого нет (нужно доработать)
+  const Users = () => {
+    if (usersFilter(users, filterState, activeUser).length > 0) {
+      return usersFilter(users, filterState, activeUser)
+        .filter(user => user.firstName.includes(searchState))
+        .map(user => <UserCard user={user}/>)
+    } return <h3>Сначала нужно подписаться:)</h3>
   }
 
   return (
@@ -73,18 +73,9 @@ export const MainPage = ({ users, activeUser }) => {
          searchState={searchState}
          setSearchState={setSearchState}
        />
-       <Filter
-          setFilterState={setFilterState}
-          filterState={filterState}
-          activeUser={activeUser}
-       />
+       { activeUser.id && <Filter setFilterState={setFilterState} filterState={filterState} /> }
        <div className='cards__container'>
-       <Users
-          users={users}
-          activeUser={activeUser}
-          color={color}
-          filterState={filterState}
-       />
+       <Users filterState={filterState} />
       </div>
     </div>
   )

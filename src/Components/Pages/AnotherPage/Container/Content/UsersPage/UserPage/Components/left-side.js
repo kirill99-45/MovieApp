@@ -1,17 +1,22 @@
 import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { ButtonSubscribe } from './button-subscribe.js';
 
-export const LeftSide = (props) => {
+export const LeftSide = ({ user }) => {
 
   const [btnSubscribersState, setBtnSubscribersState] = useState({ btn : '', btnTitle : '', titleForBtn : ' '})
 
+  const activeUser = useSelector(state => {
+    return state.activeUserReducer.user
+  })
+
   useEffect(() => {
-    isSubscriber(props.user.subscribers)
-  }, [props.activeUser])
+    isSubscriber(user.subscribers)
+  }, [activeUser])
 
   const isSubscriber = (subscribers) => {
     for (let i = 0; i < subscribers.length; i++) {
-      if (subscribers[i].id === props.activeUser.id) {
+      if (subscribers[i].id === activeUser.id) {
         return setBtnSubscribersState({ btn : 'btn-subscribed', btnTitle : 'Вы подписаны', titleForBtn : 'Отписаться' })
       }
       setBtnSubscribersState({ btn : 'btn-subscribe', btnTitle : 'Подписаться', titleForBtn : 'Подписаться' })
@@ -22,17 +27,14 @@ export const LeftSide = (props) => {
     <div className='profile__left-side'>
       <div className='profile__avatar'>
         <div className='avatar__wrapper'>
-          <img src={props.user.mainPhoto} alt='Ваше изображение' style={{ backgroundColor : props.color }}/>
+          <img src={user.mainPhoto} alt='Ваше изображение' />
         </div>
       </div>
       <ButtonSubscribe
-        getSubscribed={props.getSubscribed}
-        unSubscribe={props.unSubscribe}
         setBtnSubscribersState={setBtnSubscribersState}
         btnSubscribersState={btnSubscribersState}
-        activeUser={props.activeUser}
-        setLayoutState={props.setLayoutState}
-        user={props.user}
+        activeUser={activeUser}
+        user={user}
       />
     </div>
   )

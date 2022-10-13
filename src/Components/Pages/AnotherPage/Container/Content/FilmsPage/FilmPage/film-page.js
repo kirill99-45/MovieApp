@@ -5,7 +5,7 @@ import { Grade } from './Components/Grade/grade.js';
 import './css/film-page.css';
 import './css/media.css';
 
-export const FilmPage = ({ film, activeUser, setLayoutState }) => {
+export const FilmPage = ({ film }) => {
 
   const [color, setColor] = useState('#232931')
 
@@ -103,7 +103,7 @@ export const FilmPage = ({ film, activeUser, setLayoutState }) => {
       </div>
       <div className='comments'>
         <span className='comments-title'>Коментарии</span>
-        <Comments comments={film.comments} activeUser={activeUser} color={color} />
+        <Comments comments={film.comments} color={color} />
       </div>
     </div>
   )

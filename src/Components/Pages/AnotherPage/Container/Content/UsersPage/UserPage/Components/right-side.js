@@ -1,8 +1,14 @@
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { BigPhoto } from 'C:/Users/User/github/movies/src/Components/Big-photo/big-photo.js';
 import { AllPhotos } from 'C:/Users/User/github/movies/src/Components/AllPhotos/all-photos.js';
 import { Photo } from 'C:/Users/User/github/movies/src/Components/AllPhotos/photo.js';
 
-export const RightSide = ({ user, activeUser, setBigPhotoState, color }) => {
+export const RightSide = ({ user }) => {
+
+  const isBigPhoto = useSelector(state => {
+    return state.bigPhotoReducer.isOpen
+  })
 
   /*------- Формируем надпись количества подписчиков --------*/
 
@@ -59,8 +65,6 @@ export const RightSide = ({ user, activeUser, setBigPhotoState, color }) => {
         allPhotosState={allPhotosState}
         setAllPhotosState={setAllPhotosState}
         photos={user.photos}
-        activeUser={activeUser}
-        setBigPhotoState={setBigPhotoState}
       />
       <div className='profile__main-info'>
         <div className='fio__wrapper'>
@@ -116,18 +120,12 @@ export const RightSide = ({ user, activeUser, setBigPhotoState, color }) => {
          user.photos.map((photo, index) => {
            if (index < 4) {
              return (
-               <Photo
-                 key={user.photos[index].id}
-                 index={index}
-                 setBigPhotoState={setBigPhotoState}
-                 data={user.photos[index]}
-                 activeUser={activeUser}
-                 color={color}
-               />
+               <Photo key={user.photos[index].id} index={index} data={user.photos[index]} />
              )
            }
          })
        }
+       { isBigPhoto && <BigPhoto photos={user.photos} /> }
        </div>
       </div>
     </div>

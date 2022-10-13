@@ -6,6 +6,10 @@ import { Page } from './page.js';
 
 export const Server = () => {
 
+  useEffect(() => {
+    window.scrollTo(0,0)
+  }, [])
+
   const [dataState, setDataState] = useState({
     loading : true,
     posts : [],

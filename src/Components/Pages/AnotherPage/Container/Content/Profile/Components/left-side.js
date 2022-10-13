@@ -1,6 +1,11 @@
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 
-export const LeftSide = ({ activeUser, color }) => {
+export const LeftSide = ({ color }) => {
+
+  const activeUser = useSelector(state => {
+    return state.activeUserReducer.user
+  })
 
   const [changeAvatarState, setChangeAvatarState] = useState({ className : 'change-avatar-hidden', title : 'Редактировать' })
 

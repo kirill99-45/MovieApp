@@ -1,9 +1,13 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
-export const AddNewComment = ({ activeUser, comments, post }) => {
+export const AddNewComment = ({ comments, post }) => {
 
   const dispatch = useDispatch()
+
+  const activeUser = useSelector(state => {
+    return state.activeUserReducer.user
+  })
 
   const [newCommentState, setNewCommentState] = useState({
     value : ``,

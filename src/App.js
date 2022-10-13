@@ -2,23 +2,22 @@ import { useState, useEffect } from 'react';
 import { Header } from './Components/Header/header.js';
 import { Footer } from './Components/Footer/footer.js';
 import { Pages } from './Components/Pages/Pages.js';
-import { Auth } from './Components/Auth/auth.js';
-import { useSelector } from 'react-redux'
+import { AuthWrapper } from './Components/Auth/auth.js';
+import { useSelector, useDispatch } from 'react-redux';
+import { activeUserClose } from './Redux/actions.js';
 import logo from './logo.svg';
 import './App.css';
 
 export const App = (props) => {
 
-  const [activeUser, setActiveUser] = useState('Аноним')
+  const isOpenAuth = useSelector(state => {
+    return state.activeUserReducer.isOpen
+  })
 
-  const [layoutState, setLayoutState] = useState('layout-hidden')
+  const dispatch = useDispatch()
 
   useEffect(() => {
-    const setState = (event) => {
-      if (event.key === 'Escape') {
-        setLayoutState('layout-hidden')
-      }
-    }
+    const setState = (event) => event.key === 'Escape' ? dispatch(activeUserClose()) : ''
 
     window.addEventListener('keydown', setState)
 
@@ -28,11 +27,7 @@ export const App = (props) => {
   })
 
   useEffect(() => {
-    const setState = (event) => {
-      if (layoutState === 'layout-visible' && event.target.className === 'layout-visible') {
-        setLayoutState('layout-hidden')
-      }
-    }
+    const setState = (event) => event.target.className === 'layout-visible' ? dispatch(activeUserClose()) : ''
 
     window.addEventListener('click', setState)
 
@@ -43,23 +38,10 @@ export const App = (props) => {
 
   return (
     <div className='wrapper'>
-      <Header
-        activeUser={activeUser}
-        layoutState={layoutState}
-        setLayoutState={setLayoutState}
-      />
-      <Pages
-        activeUser={activeUser}
-        setActiveUser={setActiveUser}
-        setLayoutState={setLayoutState}
-      />
+      <Header />
+      { isOpenAuth && <AuthWrapper /> }
+      <Pages />
       <Footer />
-      <Auth
-        layoutState={layoutState}
-        setLayoutState={setLayoutState}
-        setActiveUser={setActiveUser}
-        activeUser={activeUser}
-      />
     </div>
   )
 }

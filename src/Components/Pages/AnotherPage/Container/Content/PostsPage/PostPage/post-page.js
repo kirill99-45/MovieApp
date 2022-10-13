@@ -7,7 +7,7 @@ import { FilmCard } from './Article/film-card.js';
 import { Comments } from 'C:/Users/User/github/movies/src/Components/Comments/comments.js';
 import './post-page.css';
 
-export const PostPage = ({ post, activeUser, setLayoutState, addNewCommentPost }) => {
+export const PostPage = ({ post, addNewCommentPost }) => {
 
   useEffect(() => {
     window.scrollTo(0, 0)
@@ -83,7 +83,7 @@ export const PostPage = ({ post, activeUser, setLayoutState, addNewCommentPost }
       </main>
       <footer className='post-page__footer'>
         <h3>Комментарии {getComments(post.comments)}</h3>
-        <Comments activeUser={activeUser} setLayoutState={setLayoutState} comments={post.comments} />
+        <Comments comments={post.comments} />
       </footer>
       { scrollState.scroll > 700 ? <button className='page-to-up' onClick={goToTop}>Наверх</button> : '' }
     </div>

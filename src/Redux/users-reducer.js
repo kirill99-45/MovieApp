@@ -1,6 +1,6 @@
 import { USERS_GET_SUBSCRIBED, USERS_UNSUBSCRIBED, USERS_PHOTO_ADD_COMMENT } from './types.js';
 
-const initState =
+export const users =
 [
   {
     id : '11111111',
@@ -1006,7 +1006,7 @@ const initState =
   }
 ]
 
-export const usersReducer = (state = initState, action) => {
+export const usersReducer = (state = users, action) => {
   switch (action.type) {
     case USERS_GET_SUBSCRIBED: {
       // if (activeUser.id === undefined) {

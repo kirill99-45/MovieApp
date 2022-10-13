@@ -1,27 +1,32 @@
+import { useDispatch } from 'react-redux';
+import { activeUserOpen } from 'C:/Users/User/github/movies/src/Redux/actions.js';
+
 export const ButtonSubscribe = (props) => {
 
+  const { activeUser, setBtnSubscribersState, btnSubscribersState, user} = props
+
+  const dispatch = useDispatch()
+
   const getSubsrcibe = () => {
-    if (props.activeUser.id) {
-      if (props.btnSubscribersState.btn === 'btn-subscribed') {
-        props.setBtnSubscribersState({ btn : 'btn-subscribe', btnTitle : 'Подписаться', titleForBtn : 'Подписаться' })
-        props.unSubscribe(props.activeUser, props.user)
-      } else {
-        props.setBtnSubscribersState({ btn : 'btn-subscribed', btnTitle : 'Вы подписаны', titleForBtn : 'Отписаться' })
-        props.getSubscribed(props.activeUser, props.user)
-      }
+    if (!activeUser.id) {
+      dispatch(activeUserOpen())
     } else {
-      props.setLayoutState('layout-visible')
+      if (btnSubscribersState.btn === 'btn-subscribed') {
+        setBtnSubscribersState({ btn : 'btn-subscribe', btnTitle : 'Подписаться', titleForBtn : 'Подписаться' })
+      } else {
+        setBtnSubscribersState({ btn : 'btn-subscribed', btnTitle : 'Вы подписаны', titleForBtn : 'Отписаться' })
+      }
     }
   }
 
   return (
     <button
-      className={props.btnSubscribersState.btn}
-      title={props.btnSubscribersState.btnTitle}
+      className={btnSubscribersState.btn}
+      title={btnSubscribersState.btnTitle}
       type='button'
       onClick={getSubsrcibe}
     >
-      {props.btnSubscribersState.titleForBtn}
+      {btnSubscribersState.titleForBtn}
     </button>
   )
 }

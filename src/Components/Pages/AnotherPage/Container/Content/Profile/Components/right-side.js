@@ -1,12 +1,17 @@
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { AllPhotos } from 'C:/Users/User/github/movies/src/Components/AllPhotos/all-photos.js';
 import { Photo } from 'C:/Users/User/github/movies/src/Components/AllPhotos/photo.js';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPen } from '@fortawesome/free-solid-svg-icons';
 
-export const RightSide = ({ activeUser, setBigPhotoState, color }) => {
+export const RightSide = () => {
 
-  let checkTitleSubscribers = (subscribers) => {
+  const activeUser = useSelector(state => {
+    return state.activeUserReducer.user
+  })
+
+  const checkTitleSubscribers = (subscribers) => {
     if (subscribers % 10 === 1) {
       return 'Подписчик'
     } else if (subscribers % 10 === 2
@@ -19,7 +24,7 @@ export const RightSide = ({ activeUser, setBigPhotoState, color }) => {
 
  /*------- Формируем надпись количества подписок -------*/
 
-  let checkTitleSubscribs = (subscribs) => {
+  const checkTitleSubscribs = (subscribs) => {
     if (subscribs % 10 === 1) {
       return 'Подписка'
     } else if (subscribs % 10 === 2
@@ -32,7 +37,7 @@ export const RightSide = ({ activeUser, setBigPhotoState, color }) => {
 
  /*------ Формируем надпись количества фотографий ------*/
 
- let chechTitlePhotos = (photos) => {
+ const chechTitlePhotos = (photos) => {
    if (photos % 10 === 1) {
      return 'Фотография'
    } else if (photos % 10 === 2
@@ -68,7 +73,6 @@ export const RightSide = ({ activeUser, setBigPhotoState, color }) => {
         setAllPhotosState={setAllPhotosState}
         photos={activeUser.photos}
         activeUser={activeUser}
-        setBigPhotoState={setBigPhotoState}
       />
       <div className='profile__main-info'>
         <div className='fio__wrapper'>
@@ -131,10 +135,8 @@ export const RightSide = ({ activeUser, setBigPhotoState, color }) => {
                <Photo
                  key={photo.id}
                  index={index}
-                 setBigPhotoState={setBigPhotoState}
                  data={photo}
                  activeUser={activeUser}
-                 color={color}
                />
              )
            }

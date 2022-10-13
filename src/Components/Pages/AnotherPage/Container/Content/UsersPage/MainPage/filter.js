@@ -1,10 +1,14 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
+import { useSelector } from 'react-redux';
 
-export const Filter = ({ filterState, setFilterState, activeUser }) => {
+export const Filter = ({ filterState, setFilterState }) => {
 
-  if (activeUser) {
-    return (
+  const activeUser = useSelector(state => {
+    return state.activeUserReducer.user
+  })
+
+  return (
     <div className='users__filter-wrapper'>
       <div className='users__radio-wrapper'>
         <input
@@ -14,7 +18,6 @@ export const Filter = ({ filterState, setFilterState, activeUser }) => {
           value='1'
           onChange={(event) => setFilterState(event.target.value)}
           checked={filterState === '1' ? true : false}
-          // className='users__filter-radio'
         />
         <label for='all-users' className='users__filter-label'>
           <FontAwesomeIcon icon={faCheck} title='Перейти' className='users__radio-icon'/>
@@ -43,7 +46,6 @@ export const Filter = ({ filterState, setFilterState, activeUser }) => {
              value='3'
              onChange={(event) => setFilterState(event.target.value)}
              checked={filterState === '3' ? true : false}
-             // className='users__filter-radio'
            />
          <label for='user-followers' className='users__filter-label'>
           <FontAwesomeIcon icon={faCheck} title='Перейти' className='users__radio-icon'/>
@@ -51,6 +53,5 @@ export const Filter = ({ filterState, setFilterState, activeUser }) => {
          </label>
         </div>
     </div>
-    )
-  }
+  )
 }

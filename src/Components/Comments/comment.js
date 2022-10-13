@@ -11,28 +11,40 @@ export const PostPageComment = ({ activeUser, comment, isAnswer, postID }) => {
 
   const dispatch = useDispatch()
 
-  // Определение цвета оценки комментария //
-
   const getColor = (value) => {
     return value > 0 ? 'green' : 'red';
   }
 
-  // Состояние для скролла к полю ответа на комментарий
-
   const answerRef = useRef(null)
 
-  // Кому пишется ответ //
+  const currentPath = window.location.pathname
+
+  const getPathName = (consumer) => {
+    if (!activeUser.id || activeUser.id !== consumer.id) {
+      return currentPath.split('/').map((item, index) => {
+        if (item === 'posts' || item === 'films') {
+          return 'users'
+        } else if (index === 3) {
+          return consumer.id
+        } return item
+      }).join('/')
+    } return currentPath.split('/').map((item, index) => {
+        if (item === 'posts' || item === 'films') {
+          return 'profile'
+        } else if (index < 2) {
+          return item
+        }
+      }).join('/')
+  }
 
   const CommentConsumer = ({ consumer }) => {
     return (
       <div className='post-page__comment-consumer'>
         <FontAwesomeIcon icon={ faArrowRight }/>
-        <Link to={ pathName(comment.author) }>{consumer.firstName} {consumer.lastName}</Link>
+        <Link to={{ pathname : getPathName(consumer) }}>{consumer.firstName} {consumer.lastName}</Link>
       </div>
     )
   }
-
-  // Работа кнопки 'Ответить' //
 
   const [answerCommentState, setAnswerCommentState] = useState({
     value : '',
@@ -61,18 +73,12 @@ export const PostPageComment = ({ activeUser, comment, isAnswer, postID }) => {
     clearTimeout(getScroll)
   }
 
-  const pathName = (user) => {
-    if (user.id !== activeUser.id) {
-      return `/react-first-app/users/${comment.author.id}`
-    } return `/react-first-app/profile/`
-  }
+  const COUNT = 2
 
-  const COUNT = 2 // Настраивает количество отображаемых ответов к комментарию
-
-  const [moreAnswersState, setMoreAnswersState] = useState({ // Начальное состояние
-    allAnswers : comment.answers, // Хранение всех комментариев
-    countOfVisible : COUNT, // Количество отображаемых элементов в даннный момент времени
-    title : `Показать ответы (${comment.answers?.length - COUNT})`, // Заголовок кнопки с указанием количества скрытых ответов
+  const [moreAnswersState, setMoreAnswersState] = useState({
+    allAnswers : comment.answers,
+    countOfVisible : COUNT,
+    title : `Показать ответы (${comment.answers?.length - COUNT})`,
   });
 
   const RatingButtons = () => {
@@ -99,17 +105,15 @@ export const PostPageComment = ({ activeUser, comment, isAnswer, postID }) => {
     )
   }
 
-  // JSX //
-
   return (
     <div className='post-gage__comment-wrapper' ref={answerRef}>
       <div className='post-page__comment' >
-        <Link to={ pathName(comment.author) } className='comment__author-photo'>
+        <Link to={{ pathname : getPathName(comment.author) }} className='comment__author-photo'>
           <img src={comment.author.mainPhoto} title='Перейти'/>
         </Link>
         <div className='post-page__comment-body-container'>
           <div className='post-page__comment-author-wrapper'>
-            <Link to={ pathName(comment.author) } className='post-page__comment-author'>{comment.author.firstName} {comment.author.lastName}</Link>
+            <Link to={{ pathname : getPathName(comment.author) }} className='post-page__comment-author'>{comment.author.firstName} {comment.author.lastName}</Link>
             { isAnswer ? <CommentConsumer consumer={comment.consumer}/> : '' }
           </div>
           <p className='post-page__comment-body'>{comment.text}</p>
