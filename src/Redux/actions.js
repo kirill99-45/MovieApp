@@ -4,12 +4,13 @@ import {
   USERS_UNSUBSCRIBED,
   USERS_PHOTO_ADD_COMMENT,
   POSTS_ADD_COMMENT,
-  ACTIVE_USER_CLOSE,
+  ACTIVE_USER_HANDLE,
   ACTIVE_USER_LOGOUT,
   ACTIVE_USER_LOGIN,
-  ACTIVE_USER_OPEN,
+  NOTIFICATIONS_HANDLER,
   BIG_PHOTO_OPEN,
   BIG_PHOTO_CLOSE,
+  NOTIFICATIONS_CLOSE,
 } from './types.js'
 
 export const filmsAddComment = () => {
@@ -49,17 +50,12 @@ export const postsAddAnswer = () => {
   }
 }
 
-export const activeUserOpen = () => {
+export const activeUserHandle = () => {
   return {
-    type : ACTIVE_USER_OPEN,
+    type : ACTIVE_USER_HANDLE,
   }
 }
 
-export const activeUserClose = () => {
-  return {
-    type : ACTIVE_USER_CLOSE,
-  }
-}
 
 export const activeUserLogin = (login, password) => {
   return {
@@ -78,5 +74,17 @@ export const bigPhotoOpen = (data, index) => {
 export const bigPhotoClose = () => {
   return {
     type : BIG_PHOTO_CLOSE,
+  }
+}
+
+export const notificationsHandler = () => {
+  return {
+    type : NOTIFICATIONS_HANDLER,
+  }
+}
+
+export const notificationsCLose = () => {
+  return {
+    type : NOTIFICATIONS_CLOSE,
   }
 }

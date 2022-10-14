@@ -1,9 +1,3 @@
-ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
 .server__wrapper {
   padding-right: 10px;
   background: white;
@@ -24,100 +18,14 @@ ul {
   font-size: 28px;
 }
 
-.pagination {
-  position: absolute;
-  bottom: 20px;
-  left: 50%;
-  transform: translate(-50%);
-  margin-top: 20px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  list-style: none;
-  cursor: pointer;
-  margin-top: 20px;
-}
-
 .posts__container {
   margin-bottom: 90px;
-}
-
-.active-page {
-  font-weight: bold;
-  border-radius: 6px;
-  box-shadow: 0px 0px 4px 1px #4ECCA3, 0px 0px 4px 1px #4ECCA3;
-  padding: 5px;
-  color: #4ECCA3;
-}
-
-.loading {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-ul li span {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 50px;
-  width: 50px;
-}
-
-.d2 {
-  position: relative;
-}
-
-.d2 {
-  background: white;
-}
-
-.d2 input, .btn-search {
-  border: none;
-  outline: none;
-}
-.d2 input {
-  width: 100%;
-  height: 42px;
-  background: white;
-  box-shadow: 0px 0px 4px 1px #989292;
-  border-radius: 6px;
-  padding-left: 15px;
-}
-.btn-search {
-  height: 26px;
-  width: 26px;
-  position: absolute;
-  top: 8px;
-  right: 40px;
-  cursor: pointer;
-  border-radius: 2px;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-color: inherit;
-}
-
-.btn-clear {
-  height: 26px;
-  width: 26px;
-  position: absolute;
-  top: 8px;
-  right: 8px;
-  cursor: pointer;
-  border-radius: 2px;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-color: inherit;
-  border: none;
 }
 
 .card__wrapper {
   margin-top: 10px;
   width: 100%;
-  min-height: 250px;
+  height: 250px;
   box-shadow: 0px 0px 4px 1px #989292;
   border-radius: 6px;
   background: white;

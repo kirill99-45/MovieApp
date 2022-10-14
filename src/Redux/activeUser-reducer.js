@@ -2,8 +2,7 @@ import { users } from './users-reducer.js';
 import {
   ACTIVE_USER_LOGIN,
   ACTIVE_USER_LOGOUT,
-  ACTIVE_USER_CLOSE,
-  ACTIVE_USER_OPEN ,
+  ACTIVE_USER_HANDLE,
 } from './types.js';
 
 const initState = {
@@ -36,16 +35,10 @@ export const activeUserReducer = (state = initState, action) => {
     case ACTIVE_USER_LOGOUT: {
 
     }
-    case ACTIVE_USER_OPEN: {
+    case ACTIVE_USER_HANDLE: {
       return {
         ...state,
-        isOpen : true,
-      }
-    }
-    case ACTIVE_USER_CLOSE: {
-      return {
-        ...state,
-        isOpen : false,
+        isOpen : !state.isOpen,
       }
     }
     default:

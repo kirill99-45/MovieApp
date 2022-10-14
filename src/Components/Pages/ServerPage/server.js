@@ -3,12 +3,18 @@ import axios from 'axios';
 import './server.css';
 import { Search } from 'C:/Users/User/github/movies/src/Components/Search/search.js';
 import { Page } from './page.js';
+import { Preload } from './preload.js'
 
 export const ServerPage = () => {
 
+  const [firstLoad, setFirstLoad] = useState(true)
+
   useEffect(() => {
     window.scrollTo(0,0)
+    setFirstLoad(false)
+    console.log('work');
   }, [])
+
 
   const [dataState, setDataState] = useState({
     loading : true,
@@ -52,7 +58,7 @@ export const ServerPage = () => {
       <Search />
       <div className='server__container'>
       <div className='posts__container'>
-        <Page posts={dataState.posts}/>
+        { firstLoad ? <Preload /> : <Page posts={dataState.posts}/> }
       </div>
       </div>
     </div>

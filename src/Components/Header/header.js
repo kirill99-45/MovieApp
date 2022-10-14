@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { activeUserOpen } from './../../Redux/actions.js';
+import { activeUserHandle } from './../../Redux/actions.js';
 import axios from 'axios';
 import { Navigation } from './Navigation/navigation.js';
 import { Weather } from './Weather/weather.js';
@@ -17,7 +17,6 @@ export const Header = () => {
   const [searchState, setSearchState] = useState('')
 
   const ActiveUser = () => {
-
     if (activeUser.id) {
       setCityName(activeUser.city)
       return (
@@ -26,18 +25,10 @@ export const Header = () => {
           <span>{activeUser.lastName}</span>
         </div>
       )
-    } return (
-      <span>
-        Авторизация
-      </span>
-    )
+    } return <span>Авторизация</span>
   }
 
   const dispatch = useDispatch()
-
-  const handleOpenAuth = useSelector(state => {
-    return state.activeUserReducer.isOpen
-  })
 
   const activeUser = useSelector(state => {
     return state.activeUserReducer.user
@@ -45,10 +36,16 @@ export const Header = () => {
 
   return (
     <div className='header'>
-      <Notifications activeUser={activeUser} />
+      { activeUser.id && <Notifications /> }
       <div className='weather__wrapper'>
         <div className='search-city'>
-          <input type="text" maxLength='25' placeholder='Искать здесь...' className='input__search-city' value={searchState} onChange={(event) => setSearchState(event.target.value)}/>
+          <input type='text'
+            maxLength='25'
+            placeholder='Искать здесь...'
+            className='input__search-city'
+            value={searchState}
+            onChange={(event) => setSearchState(event.target.value)}
+          />
           <button type='button' onClick={() => setCityName(searchState.trim())}>
             <FontAwesomeIcon icon={faMagnifyingGlass} className='weather__search'/>
           </button>
@@ -58,7 +55,7 @@ export const Header = () => {
         </div>
       </div>
       <Currency />
-      <div className='log__wrapper' onClick={() => dispatch(activeUserOpen())}>
+      <div className='log__wrapper' onClick={() => dispatch(activeUserHandle())}>
         <ActiveUser />
         <div className='icon__container'>
           <FontAwesomeIcon icon={faCircleRight} title='Войти' className='log__icon'/>

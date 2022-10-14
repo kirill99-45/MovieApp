@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import { activeUserOpen } from 'C:/Users/User/github/movies/src/Redux/actions.js';
+import { activeUserHandle } from 'C:/Users/User/github/movies/src/Redux/actions.js';
 
 export const ButtonSubscribe = (props) => {
 
@@ -9,7 +9,7 @@ export const ButtonSubscribe = (props) => {
 
   const getSubsrcibe = () => {
     if (!activeUser.id) {
-      dispatch(activeUserOpen())
+      dispatch(activeUserHandle())
     } else {
       if (btnSubscribersState.btn === 'btn-subscribed') {
         setBtnSubscribersState({ btn : 'btn-subscribe', btnTitle : 'Подписаться', titleForBtn : 'Подписаться' })

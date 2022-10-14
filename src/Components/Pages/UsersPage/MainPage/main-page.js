@@ -69,8 +69,6 @@ export const MainUsersPage = () => {
   const location = useLocation()
   const navigate = useNavigate()
 
-  console.log(location, '=======', navigate);
-
   return (
     <div className='users-page__wrapper'>
        <Search

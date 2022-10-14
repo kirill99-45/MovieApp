@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { activeUserOpen } from 'C:/Users/User/github/movies/src/Redux/actions.js';
+import { activeUserHandle } from 'C:/Users/User/github/movies/src/Redux/actions.js';
 
 export const AddComment = ({ comments, activeUser }) => {
 
@@ -38,7 +38,7 @@ export const AddComment = ({ comments, activeUser }) => {
       </div>
     )
   } return (
-    <div className='photo__add-comment__anonim' onClick={() => dispatch(activeUserOpen())}>
+    <div className='photo__add-comment__anonim' onClick={() => dispatch(activeUserHandle())}>
       <span>Авторизоваться</span>
     </div>
   )

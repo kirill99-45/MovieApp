@@ -1,10 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-export const NotificationItem = (props) => {
-
-  const activeUser = props.activeUser
-  const getSubsrcibe = props.getSubscribe
+export const NotificationItem = ({ activeUser }) => {
 
   const getSexSubscribe = (item) => {
     if (item.sex === 'man') {
