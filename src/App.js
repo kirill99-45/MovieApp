@@ -1,47 +1,33 @@
-import { useState, useEffect } from 'react';
-import { Header } from './Components/Header/header.js';
-import { Footer } from './Components/Footer/footer.js';
-import { Pages } from './Components/Pages/Pages.js';
-import { AuthWrapper } from './Components/Auth/auth.js';
-import { useSelector, useDispatch } from 'react-redux';
-import { activeUserClose } from './Redux/actions.js';
-import logo from './logo.svg';
-import './App.css';
+import { useState } from 'react';
+import { Routes, Route } from 'react-router-dom';
+import { MainPage } from './Components/Pages/HomePage/main-page.js';
+import { MainPostsPage } from './Components/Pages/PostsPage/MainPage/main-page.js';
+import { MainFilmsPage } from './Components/Pages/FilmsPage/MainFilmPage/main-film-page.js';
+import { FilmPage } from './Components/Pages/FilmsPage/FilmPage/film-page.js';
+import { PostPage } from './Components/Pages/PostsPage/PostPage/post-page.js';
+import { ProfilePage } from './Components/Pages/ProfilePage/profile-page.js';
+import { MainUsersPage } from './Components/Pages/UsersPage/MainPage/main-page.js';
+import { UserPage } from './Components/Pages/UsersPage/UserPage/user-page.js';
+import { ServerPage } from './Components/Pages/ServerPage/server.js';
+import { NotFound } from './Components/Pages/NotFound/not-found.js';
+import { Layout } from './Components/Layout/layout.js';
 
-export const App = (props) => {
-
-  const isOpenAuth = useSelector(state => {
-    return state.activeUserReducer.isOpen
-  })
-
-  const dispatch = useDispatch()
-
-  useEffect(() => {
-    const setState = (event) => event.key === 'Escape' ? dispatch(activeUserClose()) : ''
-
-    window.addEventListener('keydown', setState)
-
-    return () => {
-      window.removeEventListener('keydown', setState)
-    }
-  })
-
-  useEffect(() => {
-    const setState = (event) => event.target.className === 'layout-visible' ? dispatch(activeUserClose()) : ''
-
-    window.addEventListener('click', setState)
-
-    return () => {
-      window.removeEventListener('click', setState)
-    }
-  })
+export const App = () => {
 
   return (
-    <div className='wrapper'>
-      <Header />
-      { isOpenAuth && <AuthWrapper /> }
-      <Pages />
-      <Footer />
-    </div>
+    <Routes>
+      <Route path='/' element={<Layout />}>
+        <Route index element={<MainPage />} />
+        <Route path='posts' element={<MainPostsPage />} />
+        <Route path='posts/:id' element={<PostPage/>} />
+        <Route path='films' element={<MainFilmsPage/>} />
+        <Route path='films/:link' element={<FilmPage/>} />
+        <Route path='profile' element={<ProfilePage/>} />
+        <Route path='users' element={<MainUsersPage/>} />
+        <Route path='users/:id' element={<UserPage/>} />
+        <Route path='server' element={<ServerPage/>} />
+        <Route path='*' element={<NotFound/>} />
+      </Route>
+    </Routes>
   )
 }

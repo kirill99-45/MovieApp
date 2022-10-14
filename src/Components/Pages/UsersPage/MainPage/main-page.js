@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { UserCard } from './UserCard/user-card.js';
 import { Search } from 'C:/Users/User/github/movies/src/Components/Search/search.js';
 import { Filter } from './filter.js';
 import './main-page.css';
 
-export const MainPage = () => {
+export const MainUsersPage = () => {
 
   const users = useSelector(state => {
     return state.usersReducer
@@ -64,6 +65,11 @@ export const MainPage = () => {
         .map(user => <UserCard user={user}/>)
     } return <h3>Сначала нужно подписаться:)</h3>
   }
+
+  const location = useLocation()
+  const navigate = useNavigate()
+
+  console.log(location, '=======', navigate);
 
   return (
     <div className='users-page__wrapper'>

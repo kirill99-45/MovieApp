@@ -2,10 +2,15 @@ import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faComment, faEye } from '@fortawesome/free-solid-svg-icons';
+import { useSelector } from 'react-redux';
 import './css/main-page.css';
 import './css/media.css';
 
-export const MainPage = ({ posts }) => {
+export const MainPostsPage = () => {
+
+  const posts = useSelector(state => {
+    return state.postsReducer
+  })
 
   useEffect(() => {
     window.scrollTo(0, 0)

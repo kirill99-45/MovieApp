@@ -6,31 +6,31 @@ const initState =
   {
     icon : faFilm,
     title : 'Фильмы',
-    path : '/MovieApp/films',
+    path : 'films',
     active : false,
   },
   {
     icon : faBookOpenReader,
     title : 'Записи',
-    path : '/MovieApp/posts',
+    path : 'posts',
     active : false,
   },
   {
     icon : faUsers,
     title : 'Пользователи',
-    path : '/MovieApp/users',
+    path : 'users',
     active : false,
   },
   {
     icon : faServer,
     title : 'JSON',
-    path : '/MovieApp/server',
+    path : 'server',
     active : false,
   },
   {
     icon : faHome,
     title : 'Моя страница',
-    path : '/MovieApp/profile',
+    path : 'profile',
     active : false,
   }
 ]

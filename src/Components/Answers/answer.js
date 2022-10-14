@@ -28,29 +28,11 @@ export const Answers = ({ activeUser, comment, answer, postID, author }) => {
 
   const currentPath = window.location.pathname
 
-  const getPathName = (consumer) => {
-    if (!activeUser.id || activeUser.id !== consumer.id) {
-      return currentPath.split('/').map((item, index) => {
-        if (item === 'posts' || item === 'films') {
-          return 'users'
-        } else if (index === 3) {
-          return consumer.id
-        } return item
-      }).join('/')
-    } return currentPath.split('/').map((item, index) => {
-        if (item === 'posts' || item === 'films') {
-          return 'profile'
-        } else if (index < 2) {
-          return item
-        }
-      }).join('/')
-  }
-
   const CommentConsumer = () => {
     return (
       <div className='post-page__comment-consumer'>
         <FontAwesomeIcon icon={ faArrowRight }/>
-        <Link to={{ pathname : getPathName(answer.consumer) }}>{answer.consumer.firstName} {answer.consumer.lastName}</Link>
+        <Link to={`../../users/${answer.consumer.id}`}>{answer.consumer.firstName} {answer.consumer.lastName}</Link>
       </div>
     )
   }
@@ -74,12 +56,12 @@ export const Answers = ({ activeUser, comment, answer, postID, author }) => {
   return (
     <>
     <div className='comment-answer__wrapper' key={answer.id}>
-      <Link to={{ pathname : getPathName(author) }} className='comment__author-photo' target='_blank'>
+      <Link to={`../../users/${answer.author.id}`} className='comment__author-photo' target='_blank'>
         <img src={answer.author.mainPhoto} title='Перейти'/>
       </Link>
       <div className='post-page__comment-body-container'>
         <div className='post-page__comment-author-wrapper'>
-          <Link to={{ pathname : getPathName(author) }} className='post-page__comment-author'>{answer.author.firstName} {answer.author.lastName}</Link>
+          <Link to={`../../users/${answer.author.id}`} className='post-page__comment-author'>{answer.author.firstName} {answer.author.lastName}</Link>
           <CommentConsumer />
         </div>
         <p className='post-page__comment-body'>{answer.text}</p>

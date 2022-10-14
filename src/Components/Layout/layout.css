@@ -1,17 +1,26 @@
-.container {
+.app__wrapper {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+  position: relative;
+}
+
+.app__container {
   width: 100%;
   display: flex;
   position: relative;
   justify-content: space-between;
 }
 
-.sidebar-container {
+.app__sidebar-container {
   margin-top: 90px;
   width: 7.5%;
   z-index: 99;
 }
 
-.container-content {
+.app__container-content {
   margin-top: 80px;
   display: flex;
   width: 91%;

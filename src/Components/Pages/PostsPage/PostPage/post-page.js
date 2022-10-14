@@ -1,4 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
+import { useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faComment, faBookmark, faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
 import { TextBlock } from './Article/text-block.js';
@@ -7,7 +9,13 @@ import { FilmCard } from './Article/film-card.js';
 import { Comments } from 'C:/Users/User/github/movies/src/Components/Comments/comments.js';
 import './post-page.css';
 
-export const PostPage = ({ post, addNewCommentPost }) => {
+export const PostPage = () => {
+
+  const params = useParams()
+
+  const [post] = useSelector(state => {
+    return state.postsReducer.filter(post => post.id == params.id)
+  })
 
   useEffect(() => {
     window.scrollTo(0, 0)

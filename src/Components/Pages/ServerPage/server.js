@@ -4,7 +4,7 @@ import './server.css';
 import { Search } from 'C:/Users/User/github/movies/src/Components/Search/search.js';
 import { Page } from './page.js';
 
-export const Server = () => {
+export const ServerPage = () => {
 
   useEffect(() => {
     window.scrollTo(0,0)

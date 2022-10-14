@@ -1,11 +1,16 @@
 import { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { FilmCard } from './Components/film-card.js';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAnglesDown, faAnglesUp, faMagnifyingGlass, faXmark  } from '@fortawesome/free-solid-svg-icons';
 import './css/main-film-page.css';
 import './css/media.css';
 
-export const MainFilmsPage = ({ films }) => {
+export const MainFilmsPage = () => {
+
+  const films = useSelector(state => {
+    return state.filmsReducer
+  })
 
   /* ---- Создаем локальное состояние для отрисовки нужных нам фильмов -----*/
 
@@ -83,7 +88,7 @@ export const MainFilmsPage = ({ films }) => {
     return description.toLowerCase().includes(searchState.toLowerCase()) ||
            title.toLowerCase().includes(searchState.toLowerCase())})
    .map(film => {
-      let path = `/films/${film.path}`
+      const path = `/films/${film.path}`
       return (
       <FilmCard allFilms={film} key={film.id} searchState={searchState}/>
     )

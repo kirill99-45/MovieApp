@@ -1,19 +1,24 @@
 import { useState, createRef, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { Slider } from './Components/Slider/slider.js';
+import { useParams } from 'react-router-dom';
 import { Comments } from 'C:/Users/User/github/movies/src/Components/Comments/comments.js';
 import { Grade } from './Components/Grade/grade.js';
 import './css/film-page.css';
 import './css/media.css';
 
-export const FilmPage = ({ film }) => {
+export const FilmPage = () => {
 
-  const [color, setColor] = useState('#232931')
+  const params = useParams()
+
+  const [film] = useSelector(state => {
+    return state.filmsReducer.filter(item => item.path === params.link)
+  })
+
+  console.log(film);
 
   useEffect(() => {
     window.scrollTo(0, 0)
-    window.addEventListener('load', () => {
-      setColor('')
-    })
   }, [])
 
   const getColor = () => {
@@ -31,7 +36,7 @@ export const FilmPage = ({ film }) => {
     <div className='film-page__wrapper'>
       <div className='film-card'>
         <div className='film-card__info'>
-         <Slider photos={film.slider.slides} color={color}/>
+         <Slider photos={film.slider.slides} />
           <div className='film-card__about'>
           <span className='about-film'>Фильм: {film.title}</span>
             <div className='about__wrapper'>
@@ -93,7 +98,6 @@ export const FilmPage = ({ film }) => {
             frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
-            style={{ backgroundColor : color }}
           />
         </div>
         <div className='film-card__wrapper-description'>
@@ -103,7 +107,7 @@ export const FilmPage = ({ film }) => {
       </div>
       <div className='comments'>
         <span className='comments-title'>Коментарии</span>
-        <Comments comments={film.comments} color={color} />
+        <Comments comments={film.comments} />
       </div>
     </div>
   )

@@ -1,9 +1,17 @@
-import React, {useState, useEffect} from 'react';
+import { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 import { LeftSide } from './Components/left-side';
 import { RightSide } from './Components/right-side.js';
 import './user-page.css';
 
-export const UserPage = ({ user }) => {
+export const UserPage = () => {
+
+  const { id } = useParams()
+
+  const [user] = useSelector(state => {
+    return state.usersReducer.filter(user => user.id === id)
+  })
 
   useEffect(() => {
     window.scrollTo(0,0)

@@ -50,7 +50,9 @@ export const AllPhotos = ({ allPhotosState, setAllPhotosState, setBigPhotoState 
               </div>
             </div>
             {
-              years.map((item, index) => <Album photos={Albums[years[index]]} date={item} setBigPhotoState={setBigPhotoState} key={index}/>)
+              years.map((item, index) => {
+                return <Album photos={Albums[years[index]]} date={item} setBigPhotoState={setBigPhotoState} key={index}/>
+              })
             }
           </div>
         </div>

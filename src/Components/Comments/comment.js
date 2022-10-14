@@ -17,31 +17,11 @@ export const PostPageComment = ({ activeUser, comment, isAnswer, postID }) => {
 
   const answerRef = useRef(null)
 
-  const currentPath = window.location.pathname
-
-  const getPathName = (consumer) => {
-    if (!activeUser.id || activeUser.id !== consumer.id) {
-      return currentPath.split('/').map((item, index) => {
-        if (item === 'posts' || item === 'films') {
-          return 'users'
-        } else if (index === 3) {
-          return consumer.id
-        } return item
-      }).join('/')
-    } return currentPath.split('/').map((item, index) => {
-        if (item === 'posts' || item === 'films') {
-          return 'profile'
-        } else if (index < 2) {
-          return item
-        }
-      }).join('/')
-  }
-
   const CommentConsumer = ({ consumer }) => {
     return (
       <div className='post-page__comment-consumer'>
         <FontAwesomeIcon icon={ faArrowRight }/>
-        <Link to={{ pathname : getPathName(consumer) }}>{consumer.firstName} {consumer.lastName}</Link>
+        <Link to={`../../users/${consumer.id}`}>{consumer.firstName} {consumer.lastName}</Link>
       </div>
     )
   }
@@ -108,12 +88,14 @@ export const PostPageComment = ({ activeUser, comment, isAnswer, postID }) => {
   return (
     <div className='post-gage__comment-wrapper' ref={answerRef}>
       <div className='post-page__comment' >
-        <Link to={{ pathname : getPathName(comment.author) }} className='comment__author-photo'>
+        <Link to={`../../users/${comment.author.id}`} className='comment__author-photo'>
           <img src={comment.author.mainPhoto} title='Перейти'/>
         </Link>
         <div className='post-page__comment-body-container'>
           <div className='post-page__comment-author-wrapper'>
-            <Link to={{ pathname : getPathName(comment.author) }} className='post-page__comment-author'>{comment.author.firstName} {comment.author.lastName}</Link>
+            <Link to={`../../users/${comment.author.id}`} className='post-page__comment-author'>
+              {comment.author.firstName} {comment.author.lastName}
+            </Link>
             { isAnswer ? <CommentConsumer consumer={comment.consumer}/> : '' }
           </div>
           <p className='post-page__comment-body'>{comment.text}</p>
