@@ -1,5 +1,9 @@
-import { POSTS_ADD_COMMENT, POSTS_INCREASE_RATING, POSTS_DECREASE_RATING,
-  POSTS_ADD_ANSWER } from './types.js';
+import {
+  POSTS_ADD_COMMENT,
+  POSTS_INCREASE_RATING,
+  POSTS_DECREASE_RATING,
+  POSTS_ADD_ANSWER,
+} from './types.js';
 
 const initState =
 [
@@ -253,10 +257,10 @@ const initState =
             },
             consumer :
             {
-              firstName : 'Кирилл',
-              lastName : 'Рогов',
-              mainPhoto : 'https://sun9-10.userapi.com/impg/R-MkoRP-pOt_BNNPLn5wMSnzCyrB0oWHo3f4OQ/GJM9Ar0lDMA.jpg?size=864x1080&quality=96&sign=141a66ac561501b6a62cebca86037ecc&type=album',
-              id : '172787588',
+              firstName : 'Константин',
+              lastName : 'Минин',
+              mainPhoto : 'https://avatarko.ru/img/kartinka/1/Jack_Vorobei.jpg',
+              id : '44444444',
             },
             text : `Говорят, Царь не настоящий! Самозванец!`,
             data : '29 августа, 17:40',
@@ -1144,33 +1148,44 @@ const initState =
   },
 ]
 
+const months = ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря']
+
+const getZeroTime = (time) => time > 9 ? time : `0${time}`
+
+const getData = () => {
+
+  let currentTime = new Date()
+  const day = getZeroTime(currentTime.getDate())
+  const month = months[currentTime.getMonth()]
+  const hours = getZeroTime(currentTime.getHours())
+  const minutes = getZeroTime(currentTime.getMinutes())
+
+  return `${day} ${month}, ${hours}:${minutes}`
+}
+
 export const postsReducer = (state = initState, action) => {
   switch (action.type) {
     case POSTS_ADD_COMMENT: {
-      const { user } = action.payload
+      const { id, author, text } = action.payload
 
       const newComment = {
-        id : state[action.payload.id].comments.length,
-        author :
-        {
-          firstName :  user.firstName,
-          lastName : user.lastName,
-          mainPhoto : user.mainPhoto,
-          id : user.id,
+        id : state[id].comments.length + 1,
+        author : {
+          firstName : author.firstName,
+          lastName : author.lastName,
+          mainPhoto : author.mainPhoto,
+          id : author.id,
         },
-        text : `${action.payload.text}`,
-        data : '2 сентября, 22:52',
+        text : text,
+        data : getData(),
         rating : 0,
       }
-
       return state.map(post => {
-        if (post.id !== action.payload.id) {
+        if (post.id !== id) {
           return post
-        } else {
-          return {
-            ...post,
-            comments : post.comments.length > 0 ? [...post.comments, newComment] : [newComment]
-          }
+        } return {
+          ...post,
+          comments : post.comments.length > 0 ? [...post.comments, newComment] : [newComment],
         }
       })
     }
@@ -1280,80 +1295,72 @@ export const postsReducer = (state = initState, action) => {
       }
     }
     case POSTS_ADD_ANSWER: {
-      const { author, consumer, post, text } = action.payload
+      console.log(action.payload);
+      // const { author, consumer, post, text } = action.payload
+      // const { author }
 
-      const months = ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня',
-      'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря', ]
-
-      const time = new Date()
-
-      const hours = time.getHours()
-      const minutes = time.getMinutes() > 9 ? time.getMinutes()  : `0${time.getMinutes()}`
-      const month = months[time.getMonth()]
-      const day = time.getDate()
-
-      const newAnswer = {
-        id : time.getTime(),
-        author :
-        {
-            firstName : author.firstName,
-            lastName : author.lastName,
-            mainPhoto : author.mainPhoto,
-            id : author.id,
-        },
-        consumer :
-        {
-          firstName : consumer.firstName,
-          lastName : consumer.lastName,
-          mainPhoto : consumer.mainPhoto,
-          id : consumer.id,
-        },
-        text : `${action.payload.text}`,
-        data : `${day} ${month} ${hours}:${minutes}`,
-        rating : 0,
-      }
-
-      if (action.payload.answer !== null) {
-        const comments = state[post].comments.map(comment => {
-          if (comment.id !== action.payload.comment.id) {
-            return comment
-          } return {
-            ...comment,
-            answers : [...comment.answers, newAnswer]
-          }
-        })
-
-        return state.map(post => {
-          if (post.id !== action.payload.post) {
-            return post
-          } else {
-            return {
-              ...post,
-              comments : comments
-            }
-          }
-        })
-      } else {
-        const comments = state[post].comments.map(comment => {
-          if (comment.id !== action.payload.comment.id) {
-            return comment
-          } return {
-            ...comment,
-            answers : comment.answers ? [...comment.answers,newAnswer] : [newAnswer]
-          }
-        })
-
-        return state.map(post => {
-          if (post.id !== action.payload.post) {
-            return post
-          } else {
-            return {
-              ...post,
-              comments : comments
-            }
-          }
-        })
-      }
+      // const newAnswer = {
+      //   id : time.getTime(),
+      //   author :
+      //   {
+      //       firstName : author.firstName,
+      //       lastName : author.lastName,
+      //       mainPhoto : author.mainPhoto,
+      //       id : author.id,
+      //   },
+      //   consumer :
+      //   {
+      //     firstName : consumer.firstName,
+      //     lastName : consumer.lastName,
+      //     mainPhoto : consumer.mainPhoto,
+      //     id : consumer.id,
+      //   },
+      //   text : `${action.payload.text}`,
+      //   data : getData(),
+      //   rating : 0,
+      // }
+      //
+      // if (action.payload.answer !== null) {
+      //   const comments = state[post].comments.map(comment => {
+      //     if (comment.id !== action.payload.comment.id) {
+      //       return comment
+      //     } return {
+      //       ...comment,
+      //       answers : [...comment.answers, newAnswer]
+      //     }
+      //   })
+      //
+      //   return state.map(post => {
+      //     if (post.id !== action.payload.post) {
+      //       return post
+      //     } else {
+      //       return {
+      //         ...post,
+      //         comments : comments
+      //       }
+      //     }
+      //   })
+      // } else {
+      //   const comments = state[post].comments.map(comment => {
+      //     if (comment.id !== action.payload.comment.id) {
+      //       return comment
+      //     } return {
+      //       ...comment,
+      //       answers : comment.answers ? [...comment.answers,newAnswer] : [newAnswer]
+      //     }
+      //   })
+      //
+      //   return state.map(post => {
+      //     if (post.id !== action.payload.post) {
+      //       return post
+      //     } else {
+      //       return {
+      //         ...post,
+      //         comments : comments
+      //       }
+      //     }
+      //   })
+      // }
     }
     default:
       return state

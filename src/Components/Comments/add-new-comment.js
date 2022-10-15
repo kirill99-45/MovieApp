@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { postsAddComment } from './../../Redux/actions.js';
 
 export const AddNewComment = ({ comments, post }) => {
 
@@ -22,7 +23,7 @@ export const AddNewComment = ({ comments, post }) => {
   }
 
   const newComment = () => {
-    dispatch({ type : 'POSTS_ADD_COMMENT', payload : { text : newCommentState.value, user : activeUser, id : post.id } })
+    dispatch(postsAddComment(post.id, activeUser, newCommentState.value))
     setNewCommentState({
       value : ``,
       className : 'post-page__comment-input',

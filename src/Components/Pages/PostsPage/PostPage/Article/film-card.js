@@ -9,9 +9,7 @@ export const FilmCard = ({ data }) => {
       <header className='post-page__film-data'>{data.caption}</header>
       <main className='post-page__film-main'>
         <div>
-          <Link to='/#' className='post-page__film-link'>
-            <h3>{data.title}</h3>
-          </Link>
+          <h3 className='post-page__film-link'>{data.title}</h3>
           <div className='post-page__film-info'>
             <span className='post-page__film-genre'>{data.genre}</span>
             <span className='post-page__film-duration'>{data.duration}</span>

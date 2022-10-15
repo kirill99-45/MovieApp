@@ -16,7 +16,7 @@ export const App = () => {
 
   return (
     <Routes>
-      <Route path='/' element={<Layout />}>
+      <Route path='MovieApp' element={<Layout />}>
         <Route index element={<MainPage />} />
         <Route path='posts' element={<MainPostsPage />} />
         <Route path='posts/:id' element={<PostPage/>} />

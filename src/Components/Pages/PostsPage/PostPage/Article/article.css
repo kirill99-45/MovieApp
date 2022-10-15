@@ -89,6 +89,7 @@
   text-decoration: none;
   color: #551a8b;
   transition: 0.2s;
+  cursor: default;
 }
 
 .post-page__film-link:hover {

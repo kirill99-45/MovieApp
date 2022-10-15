@@ -91,7 +91,7 @@ export const PostPage = () => {
       </main>
       <footer className='post-page__footer'>
         <h3>Комментарии {getComments(post.comments)}</h3>
-        <Comments comments={post.comments} />
+        <Comments comments={post.comments} post={post}/>
       </footer>
       { scrollState.scroll > 700 ? <button className='page-to-up' onClick={goToTop}>Наверх</button> : '' }
     </div>

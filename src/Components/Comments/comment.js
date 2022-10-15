@@ -7,7 +7,7 @@ import { AddAnswer } from './../Answers/add-answer.js';
 import { Answers } from './../Answers/answer.js';
 import { MoreAnswers } from './../Answers/more-answers.js';
 
-export const PostPageComment = ({ activeUser, comment, isAnswer, postID }) => {
+export const PostPageComment = ({ activeUser, comment, isAnswer, post }) => {
 
   const dispatch = useDispatch()
 
@@ -65,9 +65,9 @@ export const PostPageComment = ({ activeUser, comment, isAnswer, postID }) => {
     const changeRating = (e) => {
       if (activeUser.id) {
         if (e.target.closest('.comment-btn__plus')) {
-          dispatch({ type : 'POSTS_INCREASE_RATING', payload : { commentID : comment.id, postID : postID } })
+          // dispatch({ type : 'POSTS_INCREASE_RATING', payload : { commentID : comment.id, postID : postID } })
         } else if (e.target.closest('.comment-btn__minus')) {
-          dispatch({ type : 'POSTS_DECREASE_RATING', payload : { commentID : comment.id, postID : postID } })
+          // dispatch({ type : 'POSTS_DECREASE_RATING', payload : { commentID : comment.id, postID : postID } })
         }
       }
     }
@@ -88,12 +88,18 @@ export const PostPageComment = ({ activeUser, comment, isAnswer, postID }) => {
   return (
     <div className='post-gage__comment-wrapper' ref={answerRef}>
       <div className='post-page__comment' >
-        <Link to={`../../users/${comment.author.id}`} className='comment__author-photo'>
+        <Link
+          to={ activeUser?.id !== comment.author.id ? `../users/${comment.author.id}` : '../profile' }
+          className='comment__author-photo'
+        >
           <img src={comment.author.mainPhoto} title='Перейти'/>
         </Link>
         <div className='post-page__comment-body-container'>
           <div className='post-page__comment-author-wrapper'>
-            <Link to={`../../users/${comment.author.id}`} className='post-page__comment-author'>
+            <Link
+              to={ activeUser?.id !== comment.author.id ? `../users/${comment.author.id}` : '../profile' }
+              className='post-page__comment-author'
+            >
               {comment.author.firstName} {comment.author.lastName}
             </Link>
             { isAnswer ? <CommentConsumer consumer={comment.consumer}/> : '' }
@@ -125,9 +131,8 @@ export const PostPageComment = ({ activeUser, comment, isAnswer, postID }) => {
                 comment={comment}
                 answer={answer}
                 isAnswer={true}
-                activeUser={activeUser}
                 answerRef={answerRef}
-                postID={postID}
+                postID={post}
                 author={answer.author}
               />
             )
@@ -137,14 +142,14 @@ export const PostPageComment = ({ activeUser, comment, isAnswer, postID }) => {
       {
         answerCommentState.isOpen &&
         <AddAnswer // Блок, отвечающий за возможность ответа на комментарий
-          activeUser={activeUser}
           comment={comment}
           answerCommentState={answerCommentState}
           setAnswerCommentState={setAnswerCommentState}
           clearAnswer={clearAnswer}
           showAnswer={showAnswer}
-          postID={postID}
+          postID={post}
           author={comment.author}
+          activeUser={activeUser}
         />
       }
     </div>

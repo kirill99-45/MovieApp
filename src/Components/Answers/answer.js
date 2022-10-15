@@ -1,12 +1,16 @@
 import { useState, useEffect, useRef } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faComment, faBookmark, faPlus, faMinus, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { AddAnswer } from './add-answer.js';
 import './answers.css';
 
-export const Answers = ({ activeUser, comment, answer, postID, author }) => {
+export const Answers = ({ comment, answer, postID, author }) => {
+
+  const activeUser = useSelector(state => {
+    return state.activeUserReducer.user
+  })
 
   const dispatch = useDispatch()
 
@@ -32,7 +36,9 @@ export const Answers = ({ activeUser, comment, answer, postID, author }) => {
     return (
       <div className='post-page__comment-consumer'>
         <FontAwesomeIcon icon={ faArrowRight }/>
-        <Link to={`../../users/${answer.consumer.id}`}>{answer.consumer.firstName} {answer.consumer.lastName}</Link>
+        <Link to={ activeUser?.id !== answer.consumer.id ? `../users/${answer.consumer.id}` : '../profile' }>
+          {answer.consumer.firstName} {answer.consumer.lastName}
+        </Link>
       </div>
     )
   }
@@ -47,21 +53,29 @@ export const Answers = ({ activeUser, comment, answer, postID, author }) => {
 
   const changeRating = (e) => {
     if (e.target.closest('.comment-btn__plus')) {
-      dispatch({ type : 'POSTS_INCREASE_RATING', payload : { commentID : comment.id, postID : postID, answerID : answer.id} })
+      // dispatch({ type : 'POSTS_INCREASE_RATING', payload : { commentID : comment.id, postID : postID, answerID : answer.id} })
     } else if (e.target.closest('.comment-btn__minus')) {
-      dispatch({ type : 'POSTS_DECREASE_RATING', payload : { commentID : comment.id, postID : postID, answerID : answer.id} })
+      // dispatch({ type : 'POSTS_DECREASE_RATING', payload : { commentID : comment.id, postID : postID, answerID : answer.id} })
     }
   }
 
   return (
     <>
     <div className='comment-answer__wrapper' key={answer.id}>
-      <Link to={`../../users/${answer.author.id}`} className='comment__author-photo' target='_blank'>
+      <Link
+        to={ activeUser?.id !== answer.author.id ? `../users/${answer.author.id}` : '../profile' }
+        className='comment__author-photo'
+      >
         <img src={answer.author.mainPhoto} title='Перейти'/>
       </Link>
       <div className='post-page__comment-body-container'>
         <div className='post-page__comment-author-wrapper'>
-          <Link to={`../../users/${answer.author.id}`} className='post-page__comment-author'>{answer.author.firstName} {answer.author.lastName}</Link>
+          <Link
+            to={ activeUser?.id !== answer.author.id ? `../users/${answer.author.id}` : '../profile' }
+            className='post-page__comment-author'
+          >
+            {answer.author.firstName} {answer.author.lastName}
+          </Link>
           <CommentConsumer />
         </div>
         <p className='post-page__comment-body'>{answer.text}</p>
@@ -82,7 +96,7 @@ export const Answers = ({ activeUser, comment, answer, postID, author }) => {
     </div>
     {
       answerCommentState.isOpen &&
-      <AddAnswer // Блок, отвечающий за возможность ответа на комментарий
+      <AddAnswer
         activeUser={activeUser}
         answerCommentState={answerCommentState}
         setAnswerCommentState={setAnswerCommentState}
