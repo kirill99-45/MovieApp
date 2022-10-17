@@ -17,7 +17,7 @@ export const Comments = ({ comments, post }) => {
   return (
     <>
       { activeUser.id ? <AddNewComment post={post}/> : <AuthForAction /> }
-      { comments.map(comment => <PostPageComment comment={comment} key={comment.id} activeUser={activeUser} post={post.id}/>) }
+      { comments.map(comment => <PostPageComment comment={comment} key={comment.id} activeUser={activeUser} post={post?.id}/>) }
     </>
   )
 }

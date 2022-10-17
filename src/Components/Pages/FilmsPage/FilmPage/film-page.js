@@ -15,8 +15,6 @@ export const FilmPage = () => {
     return state.filmsReducer.filter(item => item.path === params.link)
   })
 
-  console.log(film);
-
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [])
